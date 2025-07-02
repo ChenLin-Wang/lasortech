@@ -1,2 +1,1 @@
-# lasortech
-Lasortech POS System
+# LasorTech POS System
