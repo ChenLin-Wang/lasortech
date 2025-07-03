@@ -1,6 +1,6 @@
 {
     "tasks": {
-        "compile": "deno compile --icon src/logo.ico --output build/lasortech.exe -A src/main.ts",
+        "compile": "deno compile --icon assets/logo.ico --output build/lasortech.exe -A src/main.ts",
         "start": "src/main.ts",
         "doc": "deno doc --html src/ && deno doc --json src/ | deno eval 'let x=``, dec=new TextDecoder; for await (const c of Deno.stdin.readable) x+=dec.decode(c); const dat=JSON.parse(x); console.log(dat.nodes[0].jsDoc.doc)' > README.md"
     }
