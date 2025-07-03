@@ -1,3 +1,4 @@
+#!/usr/bin/env -S deno test -A
 import { xml } from './codelang.ts';
 
 /** # Graphics Specializer for SVG or HTML Canvas */
