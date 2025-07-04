@@ -6,5 +6,10 @@ import { Program } from './program.ts';
 
 
 const app = new Program();
-await app.gui();
+for (const arg of Deno.args) {
+    if (arg == 'host') {
+        app.host();
+    }
+}
+if (!app.server) await app.gui();
 

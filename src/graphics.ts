@@ -1,4 +1,8 @@
 #!/usr/bin/env -S deno test -A
+/** # Graphics Module
+  * This module is responsible in generating graphical elements
+  * @module
+  */
 import { xml } from './codelang.ts';
 
 /** # Graphics Specializer for SVG or HTML Canvas */
@@ -116,16 +120,20 @@ export class Graphics {
             /** Attributes */
             const attr:{[name:string]:string} = {};
             /** Animation path values */
-            const ani = (s:number, e:number) => this.frames
+            const ani = (s:number, e:number) => [this.frames
                 // Get only start to end frames
                 .slice(this.frames.indexOf(s), this.frames.indexOf(e)+1)
                 // Get paths and duration
-                .map((frame,_,arr) => [fshapes[this.frames.indexOf(frame)][id].code, 1/(arr.length+1)])
+                .map((frame,n,arr) => [fshapes[this.frames.indexOf(frame)][id].code, arr.length > 1 ? n/(arr.length-1) : 0])
                 // Reduce repetitive values
                 .reduce((p,v) => !p.length || p[p.length-1][0] != v[0] ? [...p,v] : [
-                    ...p.slice(0,-1), [v[0], (p[p.length-1][1] as number)+(v[1] as number)]
+                    ...p.slice(0,-1), v
                 ], [] as (string | number)[][])
+                // Combine times
+                //.map((x,n,a) => [x[0], a.slice(0,n).map(y=>y[1] as number).reduce((p,v)=>p+v,0)])
+                ]
                 // Convert it to SVG "values" and "keyTimes"
+                //.map(v => ({path:v.map(x=>x[0]).join(';'),time:v.map(x=>x[1]).join(';')}))
             ;
             let anis:string = '';
             // Fill
@@ -272,9 +280,9 @@ Deno.test('Graphics Testing', ()=>{
         shape: u => [
             // Triangle
             {fill:'#f00', effect:['blur'], path:[
-                [0,0],
-                [100,u(0,50)+u(50,100)],
-                [0,100],
+                [0,0*u(20,40)],
+                [100,u(0,20)],
+                [0,100+u(40,60)],
                 [],
             ]}
         ]
