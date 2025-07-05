@@ -3,11 +3,10 @@
   * This module serves no actual purpose aside from minifing and color coding other embedded programming languages
   * @module 
   */
+export function line_timmer(strings:TemplateStringsArray, ...values:(string|number)[]):string {
+    return strings.reduce((out:string, str:string, n:number) => out + str + (values[n] ?? ''), '').split('\n').map(x=>x.trim()).join('');
+}
 /** XML minifier */
-export function xml(strings:TemplateStringsArray, ...values:(string|number)[]):string {
-    return strings.reduce((out:string, str:string, n:number) => out + str.split('\n').map(x=>x.trim()).join('') + (values[n] ?? ''), '');
-}
+export const xml = line_timmer;
 /** CSS minifier */
-export function css(strings:TemplateStringsArray, ...values:(string|number)[]):string {
-    return strings.reduce((out:string, str:string, n:number) => out + str.split('\n').map(x=>x/*.trim()*/).join('') + (values[n] ?? ''), '');
-}
+export const css = line_timmer;
