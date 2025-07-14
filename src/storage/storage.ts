@@ -2,21 +2,18 @@
 
 import { Pool } from "npm:pg"
 import { drizzle } from 'drizzle-orm/node-postgres'
+import { employees } from "./schema/employees.ts";
 
 class Storage {
     constructor(
         private pool = new Pool(
             { connectionString: "postgres://clwang:12345@localhost:5432/postgres" }
         ),
-        private db = drizzle(pool)
+        private db = drizzle(pool, { casing: 'snake_case' })
     ) {}
 
-    async addEmployee(e: {
-        name: string,
-        contactNumber: string,
-        email: string
-    }) {
-        return await this.db.execute("select 1")
+    async addEmployee(e: typeof employees.$inferInsert) {
+        return await this.db.insert(employees).values(e).returning().execute()
     }
 
     close() {
@@ -34,7 +31,7 @@ Deno.test('Sample creation', async () => {
         email: "sdfa@asf.sda"
     })
 
-    console.log(res.rows)
+    console.log(res)
 
     storage.close()
 })
