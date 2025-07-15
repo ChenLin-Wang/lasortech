@@ -23,6 +23,7 @@ export class TextField<T extends string> extends Dalx {
         value={this.value}
         onkeydown={(c: state_type, e: KeyboardEvent) => {
             console.log("YES");
+
         //   const target = e.target as HTMLInputElement;
         //   if (e.key === 'Enter' && this.onSubmit) {
         //     this.onSubmit(target.value as T);

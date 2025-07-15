@@ -9,15 +9,18 @@ import { Fields } from "./components/fields.tsx";
 
 Dalx.run((x) => eval(x));
 
-<App host twc style={style}>
-<button
-  class="px-4 py-1 rounded-md border border-gray-300 bg-white shadow-sm text-gray-700 text-sm
-         hover:bg-gray-100 active:bg-blue-500 active:text-white
-         focus:outline-none focus:ring-2 focus:ring-blue-400
-         transition-colors"
->
-Button
-</button>
+<App host twc={`
+  .scrollable {
+    @apply overflow-x-auto whitespace-nowrap scrollbar-hide;
+  }
+`} style={style}>
+  <label class="inline-flex items-center gap-2 cursor-pointer">
+    <input
+      type="checkbox"
+      class="form-checkbox h-4 w-4 text-blue-600 rounded border-gray-300 focus:ring-blue-400"
+    />
+    <span class="text-sm text-gray-700 select-none">Enable this option</span>
+  </label>
 
   <OrderCard
     id="04871239712852"

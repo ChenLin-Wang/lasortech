@@ -49,13 +49,13 @@ export class OrderCard extends Dalx {
   override content(_req: Request | null, _parent: Dalx): unknown {
     return (
       <Card>
-        <div class="grid grid-cols-[auto_280px] overflow-x-auto whitespace-nowrap scrollbar-hide">
+        <div class="grid grid-cols-[auto_280px] scrollable">
           <div class="p-2 border-r border-gray-300">
             <div class="flex justify-between items-baseline gap-2">
-              <p class="font-bold text-2xl flex-shrink-0 overflow-x-auto whitespace-nowrap scrollbar-hide">
+              <p class="font-bold text-2xl flex-shrink-0 scrollable">
                 {this.attr.id}
               </p>
-              <p class="text-sm overflow-x-auto whitespace-nowrap scrollbar-hide">
+              <p class="text-sm scrollable">
                 {this.attr.updateAt} / {this.attr.createAt}
               </p>
             </div>
@@ -75,16 +75,16 @@ export class OrderCard extends Dalx {
             </div>
           </div>
           <div class="p-2">
-            <p class="font-bold text-2xl w-full overflow-x-auto whitespace-nowrap scrollbar-hide">
+            <p class="font-bold text-2xl w-full scrollable">
               {this.customer.name}
             </p>
-            <p class="text-sm text-end mt-4 font-semibold overflow-x-auto whitespace-nowrap scrollbar-hide">
+            <p class="text-sm text-end mt-4 font-semibold scrollable">
               {this.customer.contactNumber}
             </p>
-            <p class="text-sm text-end font-semibold overflow-x-auto whitespace-nowrap scrollbar-hide">
+            <p class="text-sm text-end font-semibold scrollable">
               {this.customer.email}
             </p>
-            <p class="text-sm text-end font-semibold overflow-x-auto whitespace-nowrap scrollbar-hide">
+            <p class="text-sm text-end font-semibold scrollable">
               {this.customer.messenger}
             </p>
             <p class="mt-1 mb-1 font-semibold text-sm">Summary:</p>
@@ -98,7 +98,7 @@ export class OrderCard extends Dalx {
             <StateSign
               state={this.state.name}
             />
-            <div class="flex-grow overflow-x-auto whitespace-nowrap scrollbar-hide">
+            <div class="flex-grow scrollable">
               <p class="text-sm">
                 {this.state.description}
               </p>
