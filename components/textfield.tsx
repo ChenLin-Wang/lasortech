@@ -1,5 +1,5 @@
 import { Dalx, state_type } from "https://raw.githubusercontent.com/jasouza-git/dalx/refs/heads/main/mod.ts";
-import { HTMLInputElement, KeyboardEvent } from "https://raw.githubusercontent.com/jasouza-git/dalx/refs/heads/main/type.ts";
+import { KeyboardEvent } from "https://raw.githubusercontent.com/jasouza-git/dalx/refs/heads/main/type.ts";
 
 export class TextField<T extends string> extends Dalx {
   value: T;
@@ -22,7 +22,7 @@ export class TextField<T extends string> extends Dalx {
         placeholder={ this.attr.placeHolder ?? "Value" }
         value={this.value}
         onkeydown={(c: state_type, e: KeyboardEvent) => {
-            console.log("YES")
+            console.log("YES");
         //   const target = e.target as HTMLInputElement;
         //   if (e.key === 'Enter' && this.onSubmit) {
         //     this.onSubmit(target.value as T);

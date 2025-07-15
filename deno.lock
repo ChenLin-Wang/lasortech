@@ -11,7 +11,7 @@
   "remote": {
     "https://deno.land/x/lz4@v0.1.2/mod.ts": "4decfc1a3569d03fd1813bd39128b71c8f082850fe98ecfdde20025772916582",
     "https://deno.land/x/lz4@v0.1.2/wasm.js": "b9c65605327ba273f0c76a6dc596ec534d4cda0f0225d7a94ebc606782319e46",
-    "https://raw.githubusercontent.com/jasouza-git/dalx/refs/heads/main/mod.ts": "d8de7a626a7a56decc4b39b396f3941aa10c9eee0060e15b0bd3e5eeb2534d46",
+    "https://raw.githubusercontent.com/jasouza-git/dalx/refs/heads/main/mod.ts": "beb0f54a91894c23d77906d54e6014d851cb2158c097955a527a5346cfce764c",
     "https://raw.githubusercontent.com/jasouza-git/dalx/refs/heads/main/type.ts": "72789a58d0f04e65329bd2161e5a877a02f7cc37fd8c6ba912f6345ca8868105",
     "https://raw.githubusercontent.com/jasouza-git/ext_deno_swc/main/lib/deno_swc.generated.js": "6984a0a46e51b97a9aa6feb82e9c2663053d08ea6ddf5ca08d969f10f1298e7f",
     "https://raw.githubusercontent.com/jasouza-git/ext_deno_swc/main/mod.ts": "5a80401feeea61b47cfab833d15565ca0907e96e5a0f4a3bb9035d7174642b71",
