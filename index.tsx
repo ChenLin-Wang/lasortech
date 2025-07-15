@@ -1,7 +1,8 @@
 #!/usr/bin/env -S deno run --unstable-raw-imports -A --watch
-import { Dalx, App, state_type } from "https://raw.githubusercontent.com/jasouza-git/dalx/refs/heads/main/mod.ts";
+import { Dalx, App } from "https://raw.githubusercontent.com/jasouza-git/dalx/refs/heads/main/mod.ts";
 import style from "./assets/style.css" with { type: "text" }
-import { OrderCard } from "./order_card.tsx";
+import { OrderCard } from "./components/order_card.tsx";
+import { Fields } from "./components/fields.tsx";
 
 Dalx.run(x=>eval(x));
 
@@ -46,5 +47,15 @@ Dalx.run(x=>eval(x));
       description: "This order is still waitting accept from employees."
     }}
     rma="IASFA-UIHEK-AIAUY-KLJCL-IYTEQ-DKLAE"
+  />
+  
+  <Fields
+    values={[
+      { label:"testing", value: "asdfasdf" },
+      { label:"testing", value: "asdfasdf" },
+      { label:"testing", value: "asdfasdf" },
+      { label:"testing", value: "asdfasdf" },
+      { label:"testing", value: "asdfasdf" },
+    ]}
   />
 </App>

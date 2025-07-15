@@ -3,7 +3,7 @@ import { Dalx } from "https://raw.githubusercontent.com/jasouza-git/dalx/refs/he
 export class ItemTable extends Dalx {
   constructor(attrs: {
     titles: string[];
-    items: string[][];
+    items: (string|undefined)[][];
   }, child: unknown[]) {
     super(attrs, child);
     this.titles = attrs.titles;
@@ -11,7 +11,7 @@ export class ItemTable extends Dalx {
   }
 
   titles: string[];
-  items: string[][];
+  items: (string|undefined)[][];
 
   override content(_req: Request | null, _parent: Dalx): unknown {
     return (

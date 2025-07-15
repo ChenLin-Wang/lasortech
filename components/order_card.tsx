@@ -7,21 +7,21 @@ import { StateSign } from "./state_sign.tsx";
 export type Item = {
   name: string;
   serial: string;
-  brand: string;
-  mode: string;
+  brand?: string;
+  mode?: string;
 };
 
 export type Customer = {
   name: string;
   contactNumber: string;
   email: string;
-  messenger: string;
-  description: string;
+  messenger?: string;
+  description?: string;
 };
 
 export type State = {
   name: string;
-  description: string;
+  description?: string;
 };
 
 export class OrderCard extends Dalx {
@@ -30,11 +30,11 @@ export class OrderCard extends Dalx {
     updateAt: string;
     createAt: string;
     items: Item[];
-    description: string;
+    description?: string;
     customer: Customer;
     state: State;
     rma: string;
-  }, child: OrderCard[]) {
+  }, child: unknown[]) {
     super(attrs, child);
     this.items = attrs.items;
     this.customer = attrs.customer;
@@ -47,7 +47,7 @@ export class OrderCard extends Dalx {
 
   override content(_req: Request | null, _parent: Dalx): unknown {
     return (
-      <div class="rounded-xl shadow-md border border-gray-300 p-3 m-4">
+      <div class="rounded-xl shadow-md border border-gray-300 p-3">
         <div class="grid grid-cols-[auto_280px] overflow-x-auto whitespace-nowrap scrollbar-hide">
           <div class="p-2 border-r border-gray-300">
             <div class="flex justify-between items-baseline gap-2">
