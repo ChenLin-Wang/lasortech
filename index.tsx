@@ -3,24 +3,23 @@ import {
   App,
   Dalx,
 } from "https://raw.githubusercontent.com/jasouza-git/dalx/refs/heads/main/mod.ts";
-import style from "./assets/style.css" with { type: "text" };
 import { OrderCard } from "./components/order_card.tsx";
 import { Fields } from "./components/fields.tsx";
+import { CheckBox } from "./components/checkbox.tsx";
 
 Dalx.run((x) => eval(x));
 
-<App host twc={`
+<App
+  host
+  twc={`
   .scrollable {
-    @apply overflow-x-auto whitespace-nowrap scrollbar-hide;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    @apply overflow-x-auto whitespace-nowrap;
   }
-`} style={style}>
-  <label class="inline-flex items-center gap-2 cursor-pointer">
-    <input
-      type="checkbox"
-      class="form-checkbox h-4 w-4 text-blue-600 rounded border-gray-300 focus:ring-blue-400"
-    />
-    <span class="text-sm text-gray-700 select-none">Enable this option</span>
-  </label>
+`}>
+
+    <CheckBox state={false} label="asdfasdf"/>
 
   <OrderCard
     id="04871239712852"
