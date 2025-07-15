@@ -3,6 +3,7 @@ import {
 } from "https://raw.githubusercontent.com/jasouza-git/dalx/refs/heads/main/mod.ts";
 import { ItemTable } from "./item_table.tsx";
 import { StateSign } from "./state_sign.tsx";
+import { Card } from "./card.tsx";
 
 export type Item = {
   name: string;
@@ -47,7 +48,7 @@ export class OrderCard extends Dalx {
 
   override content(_req: Request | null, _parent: Dalx): unknown {
     return (
-      <div class="rounded-xl shadow-md border border-gray-300 p-3">
+      <Card>
         <div class="grid grid-cols-[auto_280px] overflow-x-auto whitespace-nowrap scrollbar-hide">
           <div class="p-2 border-r border-gray-300">
             <div class="flex justify-between items-baseline gap-2">
@@ -107,7 +108,7 @@ export class OrderCard extends Dalx {
             </div>
           </div>
         </div>
-      </div>
+      </Card>
     );
   }
 }
