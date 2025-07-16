@@ -6,6 +6,7 @@ import {
 import { OrderCard } from "./components/order_card.tsx";
 import { Fields } from "./components/fields.tsx";
 import { CheckBox } from "./components/checkbox.tsx";
+import script from "./assets/script.js" with { type: "text" };
 
 Dalx.run((x) => eval(x));
 
@@ -19,7 +20,7 @@ Dalx.run((x) => eval(x));
   }
 `}>
 
-    <CheckBox state={false} label="asdfasdf"/>
+  <CheckBox checked label="asdfasdf"/>
 
   <OrderCard
     id="04871239712852"
@@ -75,4 +76,5 @@ Dalx.run((x) => eval(x));
       { label: "testing", value: "asdfasdf" },
     ]}
   />
+  <script>{script}</script>
 </App>;

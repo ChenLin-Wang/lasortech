@@ -6,7 +6,7 @@ import { KeyboardEvent } from "https://raw.githubusercontent.com/jasouza-git/dal
 
 type Rules<T> = {
   value: T;
-  onSubmit?: (value: T) => void;
+  id: number;
   placeHolder?: string;
 };
 
@@ -18,14 +18,15 @@ export class TextField<T extends string | number> extends Dalx<Rules<T>> {
         class="border border-gray-300 rounded-md px-3 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent w-full"
         placeholder={this.attr.placeHolder ?? "Value"}
         value={this.attr.value}
-        onkeydown={(c: state_type, e: KeyboardEvent) => {
-          console.log("YES");
+        onchange={`submit_form(${this.attr.id})`}
+        // onkeydown={(c: state_type, e: KeyboardEvent) => {
+        //   console.log("YES");
 
-          //   const target = e.target as HTMLInputElement;
-          //   if (e.key === 'Enter' && this.onSubmit) {
-          //     this.onSubmit(target.value as T);
-          //   }
-        }}
+        //   //   const target = e.target as HTMLInputElement;
+        //   //   if (e.key === 'Enter' && this.onSubmit) {
+        //   //     this.onSubmit(target.value as T);
+        //   //   }
+        // }}
       />
     );
   }

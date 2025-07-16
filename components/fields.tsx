@@ -18,7 +18,7 @@ export class Fields extends Dalx<Rules> {
     return (
       <Card>
         <table class="table-fixed w-full h-[10px] text-sm">
-          {...this.attr.values.map((x) => (
+          {this.attr.values.map((x,n) => (
             <tbody>
               <tr>
                 <td class="w-32 text-end border-r border-gray-300 p-3">
@@ -27,9 +27,7 @@ export class Fields extends Dalx<Rules> {
                 <td class="p-3">
                   <TextField
                     value="asdfasdf"
-                    onSubmit={() => {
-                      console.log("Clicked");
-                    }}
+                    id={n}
                   />
                 </td>
               </tr>
