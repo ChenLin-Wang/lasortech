@@ -1,0 +1,195 @@
+@use 'sass:color'
+$u: 50px
+$p: #e7504b
+$t: .25s
+    
+@font-face
+    font-family: 'FontAwesome'
+    src: url(/asset/fa-solid.ttf) format('truetype')
+    font-weight: normal
+    font-style: normal
+
+@font-face
+    font-family: 'LeagueSpartan'
+    src: url(/assets/LeagueSpartan.ttf) format('truetype')
+    font-weight: normal
+    font-style: normal
+
+icon
+    font-family: FontAwesome
+
+:focus
+    outline: none
+
+*
+    box-sizing: border-box
+
+body, html
+    height: 100%
+
+body, button
+    font-family: LeagueSpartan
+    text-transform: uppercase
+
+body
+    display: grid
+    grid-template-rows: 0.5*$u 2*$u calc(100% - 3*$u) 0.5*$u
+    grid-template-columns: 0.5*$u 6*$u calc(100% - 7*$u) 0.5*$u
+    background-color: #111
+    margin: 0
+    transition: $t
+    overflow: hidden
+
+    &::before
+        content: ''
+        position: fixed
+        left: 0
+        top: 0
+        width: 100%
+        height: 100%
+        filter: contrast(170%) brightness(50%)
+        opacity: 0.5
+        background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MDAiIGhlaWdodD0iNTAwIj48ZmlsdGVyIGlkPSJub2lzZSIgeD0iMCIgeT0iMCI+PGZlVHVyYnVsZW5jZSB0eXBlPSJmcmFjdGFsTm9pc2UiIGJhc2VGcmVxdWVuY3k9IjAuNjUiIG51bU9jdGF2ZXM9IjMiIHN0aXRjaFRpbGVzPSJzdGl0Y2giLz48ZmVCbGVuZCBpbjI9IlNvdXJjZUdyYXBoaWMiIG1vZGU9InNjcmVlbiIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSI1MDAiIGhlaWdodD0iNTAwIiBmaWx0ZXI9InVybCgjbm9pc2UpIiBvcGFjaXR5PSIwLjUiLz48L3N2Zz4=')
+        background-position: 0 0
+        background-repeat: repeat
+        background-size: 6*$u 6*$u
+        background-color:#11111f
+        box-shadow: inset 0 0 0.25*$u #1115
+        z-index: -1
+    &::after
+        content: ''
+        grid-area: 2 / 3 / span 2
+        background-color: #ddd
+        z-index: 1
+        border-radius: 0.25*$u
+        box-shadow: inset 0 0 0.25*$u #0005
+        z-index: 0
+        transition: opacity $t $t
+    &>div
+        transition: opacity $t $t
+
+#logo
+    grid-area: 2 / 2
+    margin: auto
+
+#side
+    display: flex
+    grid-area: 3 / 2
+    flex-direction: column
+    overflow: visible
+    z-index: 1
+    a
+        width: calc(100% + 0.25*$u)
+        height: $u
+        border: 0
+        background-color: #ddd0
+        color: #fff
+        font-size: 0.4*$u
+        font-weight: bold
+        border-radius: 0.25*$u 0 0 0.25*$u
+        transition: background-color $t
+        cursor: pointer
+        text-align: center
+        line-height: $u
+        text-decoration: none
+        &.on
+            background-color: #ddd
+            color: #111
+        &:not(.on):hover
+            background-color: #ddd3
+    
+/* ----- PAGES ----- */
+body>div:not(#side)
+    opacity: 0
+    pointer-events: none
+    grid-area: 2 / 3 / span 2
+    transition: opacity $t
+    padding: $u
+    z-index: 2
+    &.on
+        opacity: 1
+        pointer-events: auto
+    span
+        color: $p
+        text-shadow: -1px -1px 0 #111, 1px -1px 0 #111, -1px  1px 0 #111, 1px  1px 0 #111
+    &>div
+        display: flex
+        flex-direction: column
+        border: 0.1*$u solid #013
+        border-radius: 0.1*$u
+        text-align: center
+        justify-content: space-around
+        background-color: #ddd
+        transition: background-color $t
+        cursor: pointer
+        icon
+            font-size: 2*$u
+            color: $p
+            -webkit-text-stroke: 0.05*$u #111
+        h1
+            font-size: 0.75*$u
+        h2
+            font-size: 0.75*$u
+        h3
+            font-size: 0.5*$u
+        &:hover
+            background-color: #ccc
+    &>p
+        font-size: 0.75*$u
+        font-weight: bold
+    &>input, &>select
+        width: 100%
+        border: 0
+        background-color: #111
+        padding: 0.25*$u
+        border-radius: 0.5*$u
+        font-size: 0.5*$u
+        color: #fff
+    &>select
+        &, &::picker(select)
+            appearance: base-select
+        &::picker-icon
+            color: $p
+            transition: rotate $t
+        &:open::picker-icon
+            rotate: 180deg
+        option
+            color: #fff
+            border: 0.1*$u solid #111
+            background-color: #111
+            &:checked
+                background-color: $p
+            &:not(:checked):hover, &:not(:checked):focus
+                background-color: color.mix($p, #111, 25%)
+            &:first-of-type
+                border-radius: 8px 8px 0 0
+            &:not(option:first-of-type)
+                border-top: none
+            &:not(option:last-of-type)
+                border-bottom: none
+            &:last-of-type
+                border-radius: 0 0 8px 8px
+    &[data=dashboard]
+        display: grid
+        grid-template: 1fr 1fr / 2fr 1fr 1fr 2fr
+        gap: 0.5*$u
+        &>:nth-child(1)
+            grid-area: 1 / 1 / span 1 / span 2
+        &>:nth-child(2)
+            grid-area: 1 / 3 / span 1 / span 2
+        &>:nth-child(3)
+            grid-area: 2 / 1
+        &>:nth-child(4)
+            grid-area: 2 / 2 / span 1 / span 2
+        &>:nth-child(5)
+            grid-area: 2 / 4
+    &[data=new-return]
+        column-count: 2
+
+body.load
+    grid-template-rows: 0.5*$u calc(100% - $u) 0 0.5*$u
+    grid-template-columns: 0.5*$u calc(100% - $u) 0 0.5*$u
+    &::after
+        opacity: 0
+    &>div
+        opacity: 0

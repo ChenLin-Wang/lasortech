@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "jsx": "react",
+    "jsxFactory": "Dalx.jsx"
+  },
+  "tasks": {
+    "update": "deno cache --reload --unstable-raw-imports index.tsx",
+    "build": "deno compile --output build/lasortech.exe --icon assets/logo.ico --unstable-raw-imports -A index.tsx",
+    "style": "npx sass --watch --style compressed assets/style.sass assets/style.css"
+  }
+}

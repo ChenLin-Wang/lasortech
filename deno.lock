@@ -1,0 +1,21 @@
+{
+  "version": "5",
+  "specifiers": {
+    "jsr:@svefro/win-console-window-state@*": "0.2.1"
+  },
+  "jsr": {
+    "@svefro/win-console-window-state@0.2.1": {
+      "integrity": "19ffcaba347e59fde9bb0471fab5b2626f5d8d16bc2ac45e993497ed3036bb83"
+    }
+  },
+  "remote": {
+    "https://deno.land/x/lz4@v0.1.2/mod.ts": "4decfc1a3569d03fd1813bd39128b71c8f082850fe98ecfdde20025772916582",
+    "https://deno.land/x/lz4@v0.1.2/wasm.js": "b9c65605327ba273f0c76a6dc596ec534d4cda0f0225d7a94ebc606782319e46",
+    "https://raw.githubusercontent.com/jasouza-git/dalx/main/mod.ts": "d48d115c14e5a6a6877b229f4f0a7f606cb070d16c8adcff0a6ee18251632e6d",
+    "https://raw.githubusercontent.com/jasouza-git/dalx/main/type.ts": "72789a58d0f04e65329bd2161e5a877a02f7cc37fd8c6ba912f6345ca8868105",
+    "https://raw.githubusercontent.com/jasouza-git/ext_deno_swc/main/lib/deno_swc.generated.js": "6984a0a46e51b97a9aa6feb82e9c2663053d08ea6ddf5ca08d969f10f1298e7f",
+    "https://raw.githubusercontent.com/jasouza-git/ext_deno_swc/main/mod.ts": "5a80401feeea61b47cfab833d15565ca0907e96e5a0f4a3bb9035d7174642b71",
+    "https://raw.githubusercontent.com/jasouza-git/ext_webview_deno/main/mod.ts": "47b717a4373e8d1b498468f94d19754cac2ee05bc4220e273ed4157dbd9a396d",
+    "https://raw.githubusercontent.com/jasouza-git/ext_webview_deno/main/src/webview.ts": "a5ea23e87c08290677e408b31e8c7942b0385e52f177a9a4d23a850c8ee2909b"
+  }
+}
