@@ -1,13 +1,15 @@
-import { pgTable, smallint, timestamp, uuid } from "drizzle-orm/pg-core";
+import { mysqlTable } from "drizzle-orm/mysql-core/table";
+import { smallint, timestamp, varchar } from "drizzle-orm/mysql-core";
 import { relations } from "drizzle-orm/relations";
 import { orders } from "./orders.ts"
 
-export const procedures = pgTable('procedures', {
-    id: uuid().defaultRandom().primaryKey().notNull(),
-    orderId: uuid().references(() => orders.id, { onDelete: "cascade" }).notNull(),
+export const procedures = mysqlTable('procedures', {
+    id: varchar({ length: 36 }).primaryKey().$defaultFn(() => crypto.randomUUID()),
+    orderId: varchar( { length: 36 } ).references(() => orders.id, { onDelete: "cascade" }).notNull(),
     stateCode: smallint().notNull(),
-    changedAt: timestamp({ precision: 6, withTimezone: true }).defaultNow().notNull()
+    changedAt: timestamp({ fsp: 6 }).defaultNow().notNull()
 })
+
 
 
 

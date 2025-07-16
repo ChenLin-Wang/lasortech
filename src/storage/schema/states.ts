@@ -1,27 +1,28 @@
-import { real, pgTable, uuid, varchar } from "drizzle-orm/pg-core";
+import { mysqlTable } from "drizzle-orm/mysql-core/table";
+import { varchar, text, real } from "drizzle-orm/mysql-core";
 import { relations } from "drizzle-orm/relations";
 import { procedures } from "./procedures.ts"
 import { employees } from "./employees.ts"
 
-export const statePayments = pgTable('state_payments', {
-    stateId: uuid().references(() => procedures.id, { onDelete: "cascade" }).primaryKey(),
+export const statePayments = mysqlTable('state_payments', {
+    stateId: varchar( { length: 36 } ).references(() => procedures.id, { onDelete: "cascade" }).primaryKey(),
     amount: real().notNull()
 })
 
-export const stateProcessings = pgTable('state_processings', {
-    stateId: uuid().references(() => procedures.id, { onDelete: "cascade" }).primaryKey(),
-    employeeId: uuid().references(() => employees.id, { onDelete: "cascade" }).notNull(),
-    reason: varchar()
+export const stateProcessings = mysqlTable('state_processings', {
+    stateId: varchar( { length: 36 } ).references(() => procedures.id, { onDelete: "cascade" }).primaryKey(),
+    employeeId: varchar( { length: 36 } ).references(() => employees.id, { onDelete: "cascade" }).notNull(),
+    reason: text()
 })
 
-export const stateIncompletes = pgTable('state_incompletes', {
-    stateId: uuid().references(() => procedures.id, { onDelete: "cascade" }).primaryKey(),
-    reason: varchar()
+export const stateIncompletes = mysqlTable('state_incompletes', {
+    stateId: varchar( { length: 36 } ).references(() => procedures.id, { onDelete: "cascade" }).primaryKey(),
+    reason: text()
 })
 
-export const stateUserCancels = pgTable('state_user_cancels', {
-    stateId: uuid().references(() => procedures.id, { onDelete: "cascade" }).primaryKey(),
-    reason: varchar()
+export const stateUserCancels = mysqlTable('state_user_cancels', {
+    stateId: varchar( { length: 36 } ).references(() => procedures.id, { onDelete: "cascade" }).primaryKey(),
+    reason: text()
 })
 
 

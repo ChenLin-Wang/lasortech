@@ -1,19 +1,18 @@
-import { NodePgDatabase } from 'drizzle-orm/node-postgres'
+
+import { MySql2Database } from "drizzle-orm/mysql2/driver";
 import { employees } from "../schema/employees.ts";
-import { Update } from "drizzle-orm";
 
 type NewEmployee = typeof employees.$inferInsert;
 type UpdateEmployeePayload = Partial<typeof employees.$inferInsert>;
 
 export class EmployeeController {
     constructor(
-        private db: NodePgDatabase
+        private db: MySql2Database
     ) {}
 
     create(...es: NewEmployee[]) {
         return this.db
             .insert(employees)
             .values(es)
-            .returning( { id: employees.id } )
     }
 }

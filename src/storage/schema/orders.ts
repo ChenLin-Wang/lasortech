@@ -1,16 +1,17 @@
-import { pgTable, uuid, varchar, primaryKey } from "drizzle-orm/pg-core";
+import { mysqlTable } from "drizzle-orm/mysql-core/table";
+import { varchar, text, primaryKey } from "drizzle-orm/mysql-core";
 import { relations } from "drizzle-orm/relations";
 import { items } from "./items.ts"
 
-export const orders = pgTable('orders', {
-    id: uuid().defaultRandom().primaryKey(),
-    rmsCode: varchar(),
-    description: varchar()
+export const orders = mysqlTable('orders', {
+    id: varchar('id', { length: 36 }).primaryKey().$defaultFn(() => crypto.randomUUID()),
+    rmsCode: text(),
+    description: text()
 })
 
-export const orderItemMap = pgTable('order_item_map', {
-    orderId: uuid().references(() => orders.id, { onDelete: "cascade" }).notNull(),
-    itemId: uuid().references(() => items.id, { onDelete: "cascade" }).notNull()
+export const orderItemMap = mysqlTable('order_item_map', {
+    orderId: varchar( { length: 36 } ).references(() => orders.id, { onDelete: "cascade" }).notNull(),
+    itemId: varchar( { length: 36 } ).references(() => items.id, { onDelete: "cascade" }).notNull()
 }, (t) => [
     primaryKey({ columns: [t.orderId, t.itemId] })
 ])

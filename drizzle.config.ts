@@ -1,9 +1,9 @@
 import { defineConfig } from "drizzle-kit";
 export default defineConfig({
-    dialect: "postgresql",
+    dialect: "mysql",
     schema: ["./src/storage/schema/*"],
     casing: "snake_case",
     dbCredentials: {
-        url: "postgres://clwang:12345@localhost:5432/postgres"
+        url: "mysql://root@localhost:3306/mysql"
     }
 });
