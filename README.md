@@ -1,1 +1,0 @@
-# LasorTech POS System
