@@ -12,7 +12,7 @@ import { Graphics } from './graphics.ts';
 export const logo = new Graphics({
     debug: import.meta.main,
     width: 650, height:85,
-    matrix: [8.25, 2, 0, -8.25, 0, 0],
+    matrix: [8.25, 1, 0, -8.25, 0, 0],
     effects: {
         'shadow': [ // White top and Black bottom shadow
             {'':'morphology', in:'SourceAlpha', operator:'dilate', radius:2, result:'extended'},

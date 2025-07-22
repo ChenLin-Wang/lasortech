@@ -7,6 +7,114 @@ import * as wcws from 'jsr:@svefro/win-console-window-state';
 import { Webview } from 'jsr:@webview/webview';
 import { css, xml } from './codelang.ts';
 import { File, LeagueSpartan, logo } from './files.ts';
+import { Element, factory } from './element.ts';
+import { contentType } from "https://deno.land/std@0.224.0/media_types/mod.ts";
+
+/** Route of a HTTP's request and its response */
+export class Route extends Element {
+    constructor(props:{path:string, data?:Uint8Array}, children:unknown[]) {
+        super();
+        this.path = props.path;
+        if(props.data) this.data = props.data;
+        this.children = children;
+    }
+    override content(req:Request|null=null):unknown {
+        if (req && new URL(req.url).pathname == this.path)
+            return !this.data ? this.children : new Response(this.data, {
+                status: 200,
+                headers: {'Content-Type': contentType(this.path)??'text/plain'}
+            });
+        return [];
+    }
+    /** Path to response */
+    path:string;
+    /** Data to response */
+    data:Uint8Array|null = null;
+}
+
+/** Main App */
+export class App extends Element {
+    constructor(props:{name:string}, children:unknown[]) {
+        super();
+        this.name = props.name;
+        this.children = children;
+        console.log(this.children)
+        // Run graphical window
+        //this.gui();
+    }
+    override content(_req:Request|null=null):unknown {
+        return <html>
+            <head>
+                <title>{this.name}</title>
+            </head>
+            <body>
+                {...this.children}
+            </body>
+        </html>
+    }
+    /** HTTP Server */
+    server:Deno.HttpServer|null = null;
+    name:string;
+    /*override toString():string {
+        return String(<html>
+            <head>
+                <title>{this.name}</title>
+            </head>
+            <body>
+                {Element.render(this.children)}
+            </body>
+        </html>)
+    }*/
+    /** Opens a graphical window */
+    async gui() {
+        /* Set a unique console title and then find it to hide (SW_HIDE = 0) */
+        await wcws.setCurrentConsoleWindowTitleIncludingDelay('DenoWebviewApp');
+        wcws.findNamedConsoleWindowAndSetWindowState('DenoWebviewApp', 0);
+
+        /* Create window */
+        const view = new Webview();
+        view.title = 'Lasortech';
+        view.navigate(`data:text/html,${encodeURIComponent(this.toString())}`);
+        view.run();
+    }
+
+    /** Hosts the graphical interface */
+    async host(port:number=8080, host:string='0.0.0.0') {
+        // If server already started
+        if (this.server) throw new Error('Server is already started');
+        // Create server
+        this.server = Deno.serve({
+            hostname:host, port:port
+        }, (req) => File.serve(req) ?? new Response(this.toString(), {
+            status: 200,
+            headers: { 'content-type': 'text/html' }
+        }));
+        // Wait for server to finish hosting
+        await this.server.finished;
+    }
+    /** Closes HTTP Server */
+    async close() {
+        // If server is already started
+        if (!this.server) throw new Error('Server did not start yet');
+        // Close server
+        await this.server.shutdown();
+    }
+
+}
+
+/** Pages */
+export class Page extends Element {
+    name:string;
+    constructor(props:{name:string}) {
+        super();
+        this.name = props.name;
+    }
+    override content():unknown {
+        return <div class="page"></div>
+    }
+}
+
+
 
 /** ## Program
   * This class is responsible in rendering the graphical interface 
@@ -160,6 +268,7 @@ export class Program {
 
 Deno.test('Interface testing', async (t) => {
     const app = new Program();
+    console.log(app.grainy);
     await t.step('Window Interface', async () => {
         await app.gui();
     });
